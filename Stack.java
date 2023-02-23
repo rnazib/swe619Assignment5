@@ -7,14 +7,25 @@ public class Stack {
    private int size = 0;
 
    // Rep-invariant: 
-   //
-   //
-   //
-   //
-   //
+   // size>=0 && size<elements.length()
+   // elements.length() > size && elements.length() > 0 
+   // for an index i, i<size and size>0; this.elements[i]!=null
+   // if size == 0, all indices of elements are null
    
    boolean repOk() {
-	
+	   if(this.size<0 || this.size >= this.elements.length ) return false;
+	   if(this.elements.length <= size || this.elements.length <=0) return false;
+	   if(this.size > 0) {
+		   for(int j=0;j<this.size;j++) {
+			   if(this.elements[j] == null) return false;
+		   }
+	   }else {
+		   for(int i=0;i<this.elements.length;i++) {
+			   if(this.elements[i] != null) return false;
+		   }
+	   }
+	   return true;
+
    }
    
    // AF(this) = 
@@ -23,6 +34,12 @@ public class Stack {
    //
    //
    public String toString() {
+	   String result = "";
+	   for (int i = 0; i < elements.length; i++) {
+		   result += this.elements[i];
+		   result+=" ";
+	}
+	   return result;
    }
 
 
