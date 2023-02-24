@@ -8,18 +8,18 @@ public class Stack {
 
    // Rep-invariant: 
    // size>=0 && size<elements.length()
-   // elements.length() > size && elements.length() > 0 
+   // elements.length() >= size && elements.length() >= 0 
    // for an index i, i<size and size>0; this.elements[i]!=null
    // if size == 0, all indices of elements are null
    
    boolean repOk() {
-	   if(this.size<0 || this.size >= this.elements.length ) return false;
-	   if(this.elements.length <= size || this.elements.length <=0) return false;
+	   if(this.size<0 || this.size > this.elements.length ) return false;
+	   if(this.elements.length < size) return false;
 	   if(this.size > 0) {
 		   for(int j=0;j<this.size;j++) {
 			   if(this.elements[j] == null) return false;
 		   }
-	   }else {
+	   }else {//size<=0
 		   for(int i=0;i<this.elements.length;i++) {
 			   if(this.elements[i] != null) return false;
 		   }
@@ -35,9 +35,9 @@ public class Stack {
    //
    public String toString() {
 	   String result = "";
-	   for (int i = 0; i < elements.length; i++) {
+	   for (int i = 0; i < this.size; i++) {
 		   result += this.elements[i];
-		   result+=" ";
+		   if(i!=(this.size - 1))result+=", ";
 	}
 	   return result;
    }
@@ -75,5 +75,8 @@ public class Stack {
          System.arraycopy(oldElements, 0, elements, 0, size);
       }
    }
-
+   public static void main(String[] args) {
+	   Stack stack = new Stack();
+	   System.out.println(stack.repOk());
+   }
 }
