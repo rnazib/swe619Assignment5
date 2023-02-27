@@ -20,7 +20,9 @@ public class Stack {
   // elements.length() >= size && elements.length() >= 0
   // for an index i, i<size and size>0; this.elements[i]!=null
   // if size == 0, all indices of elements are null
-
+   
+   // EFFECTS: Returns true if the rep invariant holds for this;
+   //     otherwise returns false.
   boolean repOk() {
       if (this.size < 0 || this.size > this.elements.length)
           return false;
@@ -32,10 +34,10 @@ public class Stack {
   }
    
    // AF(this) = 
-   //
-   //
-   //
-   //
+   //  elements[0] is the bottom element of the Stack 
+   //  elements[--size] is the top element of the Stack
+   //  element[] means an empty Stack
+
    public String toString() {
 	   String result = "";
 	   for (int i = 0; i < this.size; i++) {
