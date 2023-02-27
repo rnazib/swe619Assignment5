@@ -10,6 +10,6 @@ public class StackBuggyTester {
 			stack.push(20);
 			stack.push(30);
 			stack.pop();
-			assertFalse(stack.repOk());
+			assertTrue(stack.repOk());
 		}
 }
